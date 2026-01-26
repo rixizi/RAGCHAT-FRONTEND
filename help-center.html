@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>帮助中心 - 智能对话系统</title>
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- 配置 Tailwind CSS -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#F3F4F6',
+                        neutral: '#1F2937',
+                        'neutral-light': '#F9FAFB',
+                        'border-color': '#E5E7EB',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- 自定义工具类 -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .card-rounded {
+                border-radius: 1rem;
+            }
+            .faq-item {
+                @apply border-b border-border-color py-4;
+            }
+            .faq-question {
+                @apply font-medium text-neutral flex justify-between items-center w-full text-left cursor-pointer;
+            }
+            .faq-answer {
+                @apply mt-2 text-gray-600 text-sm;
+            }
+        }
+        
+        /* 深色模式样式 */
+        .dark {
+            background-color: #1a1a1a;
+        }
+        
+        .dark .bg-gray-50 {
+            background-color: #1a1a1a;
+        }
+        
+        .dark .bg-white {
+            background-color: #2d2d2d;
+        }
+        
+        .dark .text-neutral {
+            color: #e5e5e5;
+        }
+        
+        .dark .text-gray-600 {
+            color: #a0a0a0;
+        }
+        
+        .dark .text-gray-500 {
+            color: #9ca3af;
+        }
+        
+        .dark .border-border-color {
+            border-color: #404040;
+        }
+        
+        .dark .text-gray-400 {
+            color: #9ca3af;
+        }
+        
+        .dark .text-primary {
+            color: #818cf8;
+        }
+        
+        .dark .text-gray-500 {
+            color: #9ca3af;
+        }
+        
+        .dark .bg-blue-100 {
+            background-color: #1e3a8a;
+        }
+        
+        .dark .bg-green-100 {
+            background-color: #14532d;
+        }
+        
+        .dark .bg-purple-100 {
+            background-color: #312e81;
+        }
+        
+        .dark .text-primary {
+            color: #a5b4fc;
+        }
+        
+        .dark .contact-icon {
+            color: #e0e7ff;
+        }
+        
+        .dark .contact-title {
+            color: #f0f0f0;
+        }
+        
+        .dark .contact-link {
+            color: #60a5fa;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-neutral min-h-screen">
+    <!-- 返回按钮 -->
+    <a href="index.html" class="fixed top-4 left-4 text-gray-500 hover:text-primary transition-colors duration-200">
+        <i class="fa fa-arrow-left text-lg"></i>
+    </a>
+    
+    <!-- 帮助中心主容器 -->
+    <div class="max-w-4xl mx-auto p-4 pt-16">
+        <div class="text-center mb-10">
+            <h1 class="text-3xl font-bold text-neutral mb-2">帮助中心</h1>
+            <p class="text-gray-600">常见问题解答</p>
+        </div>
+        
+        
+        
+        
+        
+        <!-- 常见问题 -->
+        <div class="bg-white p-6 card-rounded border border-border-color shadow-sm mb-10">
+            <h2 class="text-2xl font-bold text-neutral mb-6">常见问题</h2>
+            
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>如何注册账户？</span>
+                        <i class="fa fa-chevron-down text-gray-400"></i>
+                    </button>
+                    <div class="faq-answer hidden">
+                        <p>您可以通过以下步骤注册账户：</p>
+                        <ol class="list-decimal pl-5 mt-2 space-y-1">
+                            <li>点击首页的"注册"按钮</li>
+                            <li>填写用户名、邮箱和密码</li>
+                            <li>阅读并同意用户协议</li>
+                            <li>点击"注册"完成账户创建</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <!-- FAQ 2 -->
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>忘记密码怎么办？</span>
+                        <i class="fa fa-chevron-down text-gray-400"></i>
+                    </button>
+                    <div class="faq-answer hidden">
+                        <p>如果您忘记了密码，可以通过以下方式重置：</p>
+                        <ol class="list-decimal pl-5 mt-2 space-y-1">
+                            <li>在登录页面点击"忘记密码"</li>
+                            <li>输入您的注册邮箱</li>
+                            <li>查看邮箱中的密码重置邮件</li>
+                            <li>点击邮件中的链接设置新密码</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <!-- FAQ 3 -->
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>如何保存对话记录？</span>
+                        <i class="fa fa-chevron-down text-gray-400"></i>
+                    </button>
+                    <div class="faq-answer hidden">
+                        <p>系统会自动保存您的对话记录：</p>
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li>对话记录会自动保存在左侧历史记录栏中</li>
+                            <li>您可以为对话添加标题以便识别</li>
+                            <li>在设置中可以开启自动保存功能</li>
+                            <li>支持导出对话记录为文本文件</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- FAQ 4 -->
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>如何更改个人设置？</span>
+                        <i class="fa fa-chevron-down text-gray-400"></i>
+                    </button>
+                    <div class="faq-answer hidden">
+                        <p>您可以通过以下步骤更改个人设置：</p>
+                        <ol class="list-decimal pl-5 mt-2 space-y-1">
+                            <li>点击右侧边栏的"用户中心"</li>
+                            <li>在用户中心页面修改昵称、语言等信息</li>
+                            <li>点击"设置"可以配置系统偏好</li>
+                            <li>所有更改会自动保存</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <!-- FAQ 5 -->
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>系统支持哪些快捷键？</span>
+                        <i class="fa fa-chevron-down text-gray-400"></i>
+                    </button>
+                    <div class="faq-answer hidden">
+                        <p>系统支持以下快捷键操作：</p>
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li><strong>Enter</strong>：发送消息</li>
+                            <li><strong>Shift + Enter</strong>：换行</li>
+                            <li><strong>Ctrl + N</strong>：新建对话</li>
+                            <li><strong>Ctrl + Shift + N</strong>：清空当前对话</li>
+                            <li><strong>Ctrl + ,</strong>：打开设置</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 联系我们 -->
+        <div class="bg-white p-6 card-rounded border border-border-color shadow-sm">
+            <h2 class="text-2xl font-bold text-neutral mb-6">联系我们</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa fa-envelope text-primary text-2xl contact-icon"></i>
+                    </div>
+                    <h3 class="font-bold mb-2 contact-title">邮件支持</h3>
+                    <p class="text-gray-600 text-sm mb-3">support@chatapp.com</p>
+                    <p class="text-gray-500 text-xs">24小时内回复</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa fa-comments text-primary text-2xl contact-icon"></i>
+                    </div>
+                    <h3 class="font-bold mb-2 contact-title">资助我们</h3>
+                    <p class="text-gray-600 text-sm mb-3">V我50</p>
+                    <a href="#" class="text-primary text-sm font-medium contact-link">收款码</a>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa fa-book text-primary text-2xl contact-icon"></i>
+                    </div>
+                    <h3 class="font-bold mb-2 contact-title">使用文档</h3>
+                    <p class="text-gray-600 text-sm mb-3">查看详细使用指南</p>
+                    <a href="#" class="text-primary text-sm font-medium contact-link">访问文档</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript 逻辑 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化深色模式
+            initDarkMode();
+            
+            // 检查登录状态
+            if (!localStorage.getItem('userLoggedIn')) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // FAQ切换功能
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    if (answer.classList.contains('hidden')) {
+                        // 展开
+                        answer.classList.remove('hidden');
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    } else {
+                        // 收起
+                        answer.classList.add('hidden');
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    }
+                });
+            });
+        });
+        
+        // 深色模式初始化函数
+        function initDarkMode() {
+            // 从localStorage获取主题设置
+            const savedTheme = localStorage.getItem('theme');
+            
+            // 如果有保存的主题设置，则应用它
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark');
+            }
+        }
+    </script>
+</body>
+</html>
