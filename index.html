@@ -309,7 +309,7 @@
       let currentConversationId = null;
       let currentMessages = [];
       let currentUser = null;
-      let apiBaseUrl = "https://ragchat.top:3000"; // 后端服务器地址
+      let apiBaseUrl = "https://ragchat.top"; // 后端服务器地址
       let apiKey = localStorage.getItem("apiKey") || "";
       let isAuthenticated = !!localStorage.getItem("token");
       let conversations = [];
@@ -1299,30 +1299,16 @@
         const loadingElement = addLoadingIndicator();
 
         try {
-          // 先检查服务状态
-          let healthResponse;
-          try {
-            healthResponse = await fetch("http://localhost:8000/health");
-            const healthData = await healthResponse.json();
-
-            if (!healthData.model_loaded) {
-              throw new Error("模型未加载完成，请稍后再试");
-            }
-          } catch (healthError) {
-            throw new Error("AI助手服务暂时不可用，请稍后再试");
-          }
-
-          // 调用RAG API
-          const response = await fetch("http://localhost:8000/api/query", {
+          // 通过Node.js后端调用AI服务
+          const response = await fetch(`${apiBaseUrl}/api/chat`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
             body: JSON.stringify({
-              query: message,
-              top_k_retrieve: 5,
-              top_k_rerank: 3,
-              api_key: "default_key",
+              message: message,
+              conversationId: currentConversationId,
             }),
           });
 
